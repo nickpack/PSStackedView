@@ -871,6 +871,10 @@ enum {
         
         if (lastDragOption_ == SVSnapOptionRight) {
             self.floatIndex = [self nearestValidFloatIndex:self.floatIndex round:PSSVRoundDown];
+            // Craptastic haxx
+            if (![self isViewControllerVisible:self.topViewController completely:NO])
+                [self popViewController:self.topViewController animated:YES];
+        
         }else if(lastDragOption_ == SVSnapOptionLeft) {
             self.floatIndex = [self nearestValidFloatIndex:self.floatIndex round:PSSVRoundUp];
         }else {
